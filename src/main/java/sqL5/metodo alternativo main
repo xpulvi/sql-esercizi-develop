@@ -1,0 +1,57 @@
+public class Query {
+
+    public static void printStudentsByCountry(String nazione) throws SQLException {
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        String sql = null;
+
+        try (Connection conn = MySQLJDBCUtil.getConnection()) {
+
+            System.out.printf("Connected to database %s "
+                    + "successfully.%n", conn.getCatalog());
+
+            statement = conn.createStatement();
+
+            ArrayList<StudentsData> italianStudents = new ArrayList<>();
+            ArrayList<StudentsData> germanStudents = new ArrayList<>();
+
+            if ("italy".equals(nazione.toLowerCase(Locale.ROOT))) {
+                sql = "select * from viewItalians";
+                resultSet = statement.executeQuery(sql);
+                System.out.println("Querying for Italian Students..");
+
+                while (resultSet.next()) {
+                    italianStudents.add(new StudentsData(resultSet.getString("last_name"),
+                            resultSet.getString("first_name")));
+                }
+
+                italianStudents.forEach(System.out::println);
+
+            } else if ("germany".equals(nazione.toLowerCase(Locale.ROOT))){
+                sql = "select * from viewGermans";
+                resultSet = statement.executeQuery(sql);
+              //toglimi/  System.out.println("Querying for German Students..");
+
+                while (resultSet.next()) {
+                    germanStudents.add(new StudentsData(resultSet.getString("last_name"),
+                            resultSet.getString("first_name")));
+                }
+
+                germanStudents.forEach(System.out::println);
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        }
+        System.out.println("closing..");
+    }

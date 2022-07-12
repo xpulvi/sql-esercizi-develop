@@ -1,0 +1,40 @@
+
+
+//comand  using on MySQL Shell:
+
+ci conetiamo al nostro acaunt usando il niostro account root:
+    \connect root@localhost;
+
+creaioamo 3 utenti:
+    -creiamo l'utente developer:
+     CREATE USER 'developer'@'localhost' IDENTIFIED BY 'passwordDelUtenteCreato';
+        -per ogni utente dei 3 che andiamo a creare eseguiamo sucesivamente questo comando:
+        FLUSH PRIVILEGES;
+    -creiamo l'utente viewer:
+     CREATE user 'viewer'@'localhost' IDENTIFIED BY 'passwordhere';
+     FLUSH PRIVILEGES;
+    -creiamo l'utente writer:
+     CREATE user 'writer'@'localhost' IDENTIFIED BY 'passwordhere';
+     FLUSH PRIVILEGES;
+
+ verifichiamo che tutti gli utenti che abiamo creato siano statti creati
+    SELECT User from mysql.user;
+Creiamo 3 rouli. (app_developer, app_read and app_write):
+    CREATE ROLE 'app_developer', 'app_read', 'app_write';
+asegniamo i privilegi ai ruoli appena creati:
+    GRANT ALL ON *.* TO 'app_developer';
+    GRANT SELECT ON *.* TO 'app_read';
+    GRANT INSERT, UPDATE, DELETE ON *.* TO 'app_write';
+
+Asegniamo i ruoli agli utenti:
+    GRANT 'app_developer' TO 'developer'@'localhost';
+    GRANT 'app_read' TO 'viewer'@'localhost';
+    GRANT 'app_write' TO 'writer'@'localhost';
+
+Creiamo un nuovo database col nome newdb:
+    CREATE DATABASE IF NOT EXISTS newdb;
+
+assegniamo i privilegi ai tre utenti di prima. (specificando il databese):
+    GRANT ALL PRIVILEGES ON newdb . * TO 'developer'@'localhost';
+    GRANT SELECT ON newdb.* TO 'viewer'@'localhost';
+    GRANT INSERT, UPDATE, DELETE ON newdb.* TO 'writer'@'localhost';
