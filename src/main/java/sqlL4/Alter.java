@@ -23,7 +23,7 @@ public class Alter {
 
             Statement statement = conn.createStatement();
            // ResultSet resultSet = statement.execute("CREATE TABLE newdb.students " + " (  `country` VARCHAR(30) NOT NULL,  `last_name` VARCHAR(45) NULL, PRIMARY KEY (`country`))");
-            statement.execute("ALTER TABLE `newdb`.`students` ADD COLUMN `country` VARCHAR(30) NULL AFTER `first_name`");
+            statement.execute("ALTER TABLE `newdb`.`students` ADD COLUMN `country` VARCHAR(30)  AFTER `first_name`");
 
 
             List<Student> studentList = new ArrayList<>();
@@ -35,8 +35,8 @@ public class Alter {
 
             //ciclo forHec
             for (Student o : studentList) {
-
-                statement.executeUpdate("INSERT INTO newdb.students (last_name, first_name) VALUES ('" + o.getCountry()+ "', '"+ o.getFirst_name() + "', '" + o.getLast_name() +"',)");
+                //System.out.println(statement.executeUpdate();
+                statement.executeUpdate("INSERT INTO newdb.students (last_name, first_name, country) VALUES ('" + o.getLast_name() + "', '"+ o.getFirst_name() + "', '" + o.getCountry()+"')");
             }
 
         } catch(SQLException e) {
