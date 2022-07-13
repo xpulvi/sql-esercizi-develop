@@ -25,7 +25,7 @@ public class View {
 
             statement.executeUpdate(query);
 
-            query = "CREATE VIEW viewGerman AS SELECT last_name, first_name FROM students WHERE country = 'german';";
+            query = "CREATE VIEW viewGerman AS SELECT last_name, first_name FROM students WHERE country = 'Germany';";
             statement.executeUpdate(query);
 
             //select students italian
@@ -33,12 +33,12 @@ public class View {
             //list obj studentsIta
             ArrayList<Student> studentsIta = new ArrayList<>();
             //put result on ArrayList
-            studentsIta.add();
+         //   studentsIta.add();
 
             //select students italian
             statement.executeUpdate("SELECT * FROM viewGerman");
             ArrayList<Student> studentsGer = new ArrayList<>();
-
+           // studentsGer.add();
 
 
         } catch (SQLException e) {
