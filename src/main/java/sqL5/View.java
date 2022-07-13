@@ -21,20 +21,25 @@ public class View {
 
              statement = conn.createStatement();
             //create query
-            String query = "CREATE VIEW viewItalians AS SELECT last_name, first_name FROM students WHERE country = 'Italy';";
+            String query = "CREATE VIEW viewItalian AS SELECT last_name, first_name FROM students WHERE country = 'Italy';";
 
             statement.executeUpdate(query);
 
             query = "CREATE VIEW viewGerman AS SELECT last_name, first_name FROM students WHERE country = 'german';";
             statement.executeUpdate(query);
 
-            //select
-            statement.executeUpdate("SELECT * FROM viewItalians");
-
+            //select students italian
+            statement.executeUpdate("SELECT * FROM viewItalian");
+            //list obj studentsIta
             ArrayList<Student> studentsIta = new ArrayList<>();
+            //put result on ArrayList
+            studentsIta.add();
+
+            //select students italian
+            statement.executeUpdate("SELECT * FROM viewGerman");
             ArrayList<Student> studentsGer = new ArrayList<>();
 
-            studentsIta.add();
+
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

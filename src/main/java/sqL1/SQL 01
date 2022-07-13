@@ -1,9 +1,10 @@
 
 
 //comand  using on MySQL Shell:
-
+per inserire la modalita solo sql:
+    \sql
 ci conetiamo al nostro acaunt usando il niostro account root:
-    \connect root@localhost;
+    \connect root@localhost
 
 creaioamo 3 utenti:
     -creiamo l'utente developer:
