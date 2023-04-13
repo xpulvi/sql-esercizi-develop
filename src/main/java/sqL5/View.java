@@ -53,9 +53,7 @@ public class View {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            //statement.close();
-           // resultSet.close();
-          //  resultSet2.close();
+
         }
 
     }
